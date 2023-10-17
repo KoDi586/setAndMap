@@ -1,12 +1,14 @@
 package main;
 
+import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
 //        task1();
 //        task2();
-        task3();
+//        task3();
+        task4();
     }
     public static void task1() {
         List<Integer> nums = new ArrayList<>(List.of(1, 1, 2, 3, 4, 4, 5, 5, 6, 7));
@@ -23,12 +25,27 @@ public class Main {
             нужно вывести, а только не что встречается единожды
 
             и мне показалось, что это решение наиболее оптимизированное
+
+            но когда я прочитал 4-ое задание я понял что надо было просто
+            превести в set имеющийся list и вывести его, но я оставил это
+            решение. Я извиняюсь, но я хотел, чтобы либо трактовку заданий
+            улучшили, либо дополнили примерами работ нужного кода, иначе
+            мы (студенты) можем тратить время и делать не то что от нас хотят
          */
         String str = "я понял слово я \"уникальные\" типо не не каждый экземпляр";
         List<String> strings = new ArrayList<>(List.of(str.split(" ")));
 
         System.out.println(rarelylyElements(strings));
     }
+
+    public static void task4() {
+        List<String> strings = new ArrayList<>(List.of("один", "два","два", "три", "три", "три"));
+
+        System.out.println(countExzemplars(strings));
+    }
+
+
+
 
     private static String onlyOddNums(List<Integer> nums) {
         List<Integer> integers = new ArrayList<>();
@@ -66,5 +83,24 @@ public class Main {
             }
         }
         return stringBuilder.toString();
+    }
+
+    private static String countExzemplars(List<String> strings) {
+        Map<String, Integer> exzemplar = new HashMap<>();
+        List<String> elements = new ArrayList<>();
+        for (String string : strings) {
+            if (exzemplar.containsKey(string)) {
+                exzemplar.put(string, exzemplar.get(string)+1);
+            } else {
+                exzemplar.put(string, 1);
+                elements.add(string);
+            }
+        }
+        StringBuilder result = new StringBuilder();
+        for (String element : elements) {
+            result.append(exzemplar.get(element)).append(" ");
+        }
+
+        return result.toString();
     }
 }
