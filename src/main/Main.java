@@ -1,13 +1,12 @@
 package main;
 
-import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-//        task1();
-//        task2();
-//        task3();
+        task1();
+        task2();
+        task3();
         task4();
     }
     public static void task1() {
@@ -15,7 +14,7 @@ public class Main {
         System.out.println(onlyOddNums(nums));
     }
     public static void task2() {
-        List<Integer> nums = new ArrayList<>(List.of(1, 1, 2, 3, 4, 4, 5, 5, 6, 7));
+        List<Integer> nums = new ArrayList<>(List.of(1, 4, 1, 2, 3, 4, 4, 5, 5, 6, 7));
         System.out.println(onlyEvenNums(nums));
     }
 
@@ -64,7 +63,10 @@ public class Main {
                 integers.add(num);
             }
         }
-        return integers.toString();
+        Set<Integer> set = new HashSet<>(integers);
+        List<Integer> integers1 = new ArrayList<>(set);
+        Collections.sort(integers1);
+        return integers1.toString();
     }
 
     private static String rarelylyElements(List<String> strings) {
